@@ -32,34 +32,32 @@ public class MailHelper extends HelperBase{
 		Properties props = System.getProperties();
 		Session session = Session.getDefaultInstance(props);
 		
-		//Store store;
 		try {
 			// открываем хранилище почты по протоколу pop3
 			Store store = session.getStore("pop3");
 			//store.connect(mailserver, user, password);
 			store.connect(manager.getProperty("mailserver"), user, password);
 			//получаем доступ к почтовому ящику inbox и открываем его с режимом чтения read-write
-			//Folder folder = store.getDefaultFolder().getFolder("INBOX");
+			Folder folder = store.getDefaultFolder().getFolder("INBOX");
 			
-			Folder root = store.getDefaultFolder();
-		    Folder folder = root.getFolder("inbox");
+			//Folder root = store.getDefaultFolder();
+		    //Folder folder = root.getFolder("inbox");
+			//System.out.println("!!! Folder name is "+ folder.getFullName() +"");
 			
-			System.out.println("6_01. Folder name is "+ folder.getFullName() +"");
-			//Folder folder = store.getFolder("D:\\Trennings\\_Trainings\\Trening_3\\Lesson_9\\james-2.3.2\\apps\\james\\var\\mail\\INBOX");
 			folder.open(Folder.READ_WRITE);
 			if (folder.isOpen()) {
-				System.out.println("6. Folder is Open!!!");
+				System.out.println("!!! Folder is Open!!!");
 			} else {
-				System.out.println("7. Folder is NOT Open!!!");
+				System.out.println("!!! Folder is NOT Open!!!");
 			}
 			int count_message = folder.getMessageCount();
-			System.out.println("8. Message count = " + count_message + " ");
+			System.out.println("!!! Message count = " + count_message + " ");
 			
 			int unread_count_message = folder.getUnreadMessageCount();
-			System.out.println("9. Unread Message count = " + unread_count_message + " ");
+			System.out.println("!!! Unread Message count = " + unread_count_message + " ");
 			
 			if (folder.getMessageCount() != 1) {
-				System.out.println("8. No Letter!!!");
+				System.out.println("!!! There is no Letter!!!");
 				return null;
 			}
 			// извлекаем письмо
@@ -71,7 +69,8 @@ public class MailHelper extends HelperBase{
 			String msg = (String) message.getContent();
 			folder.close(true);
 			store.close();
-			System.out.println("666 MSG = "+ msg);
+			// Print the text message
+			//System.out.println("!!! MSG = "+ msg);
 			
 			return msg;
 			
