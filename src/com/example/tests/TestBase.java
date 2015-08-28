@@ -21,10 +21,10 @@ public class TestBase {
 	    properties.load(new FileReader (new File( "application.properties")) );
 		app=new ApplicationManager(properties); */
 		
-		String configFile=System.getProperty("configFile","application.properties");
+		String configFile = System.getProperty("configFile","application.properties");
 		Properties properties = new Properties();
-		 properties.load(new FileReader (new File(configFile))); 
-		 app=new ApplicationManager(properties);
+		properties.load(new FileReader (new File(configFile))); 
+		app=new ApplicationManager(properties);
 		 
 	  }
 	 
