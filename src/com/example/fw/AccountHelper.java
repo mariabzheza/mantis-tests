@@ -25,6 +25,12 @@ public class AccountHelper extends WebDriverHelperBase{
 	    type(By.name("username"), user.login);
 	    type(By.name("email"), user.email);
 	    click(By.cssSelector("input.button"));
+	    
+	    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	    WebElement errorMessage = findElement(By.cssSelector("table.width50 tbody tr td p"));
+	    if(errorMessage != null) {
+	    	throw new RuntimeException(errorMessage.getText());
+	    }
 	    	    
 	    pause(55000);
 	    String msg = manager.getMailHelper().getNewMail(user.login, user.password);

@@ -74,7 +74,11 @@ public abstract class WebDriverHelperBase extends HelperBase {
 	}
 	
 	protected WebElement findElement(By linkText) {
-		return driver.findElement(linkText);
+		try {
+			return driver.findElement(linkText);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	protected List<WebElement> findElements(By linkText) {

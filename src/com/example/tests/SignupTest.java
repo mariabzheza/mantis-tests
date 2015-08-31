@@ -39,12 +39,24 @@ public class SignupTest extends TestBase{
 		}
 	}
 	
-	@Test
+	//@Test
 	public void  newUserShouldSignup() {
 		accHelper.signup(user);
 		accHelper.login(user);
 		
 		assertThat(accHelper.loggedUser(), equalTo(user.login));
+	}
+	
+	@Test
+	public void  existingUserShouldNotSignup() {
+		try {
+			accHelper.signup(user);
+		} catch (Exception e) {
+			assertThat(e.getMessage(), containsString("That username is already being used"));
+			return;
+		}
+		fail("Exception expected");
+		
 	}
 	
 }
