@@ -16,9 +16,9 @@ public class ApplicationManager {
 	
 	private Properties properties;
 	private HibernateHelper hibernateHelper;
-	private AccountHelper accountHelper;
-	private MailHelper mailHelper;
-	private JamesHelper jamesHelper;
+	//public AccountHelper accountHelper;
+	//private MailHelper mailHelper;
+	//private JamesHelper jamesHelper;
 		
 	public ApplicationManager(Properties properties) {
 		this.properties = properties;
@@ -27,6 +27,38 @@ public class ApplicationManager {
 	public void stop() {
 		driver.quit();
 	}
+
+	public HibernateHelper getHibernateHelper() {
+		if (hibernateHelper==null) {
+			hibernateHelper=new HibernateHelper(this);
+		}
+		
+		return hibernateHelper;		
+	}
+	
+/*	public AccountHelper getAccountHelper() {
+		if (accountHelper==null) {
+			accountHelper=new AccountHelper(this);
+		}
+		
+		return accountHelper;
+	}
+	
+	public MailHelper getMailHelper() {
+		if (mailHelper==null) {
+			mailHelper=new MailHelper(this);
+		}
+		
+		return mailHelper;
+	}
+	
+	public JamesHelper getJamesHelper() {
+		if (jamesHelper==null) {
+			jamesHelper=new JamesHelper(this);
+		}
+		return jamesHelper;
+	}
+*/
 	
 	public WebDriver getDriver() {
 		String browser = properties.getProperty("browser");
@@ -57,53 +89,8 @@ public class ApplicationManager {
 		driver.get(string);
 	}
 	
-	public void setProperty(Properties props) {
-		this.properties = props;
-	}
-	
 	public String getProperty(String key) {
 		return properties.getProperty(key);
-	}
-	
-	public String getProperty(String key, String defaultValue) {
-		return properties.getProperty(key, defaultValue);
-	}
-
-	public HibernateHelper getHibernateHelper() {
-		if (hibernateHelper == null) {
-			hibernateHelper = new HibernateHelper(this);
-		}
-		
-		return hibernateHelper;		
-	}
-
-/*	public AccountHelper getAccountHelper() {
-		
-		return null;
-	}
-*/	
-
-	public AccountHelper getAccountHelper() {
-		if (accountHelper == null) {
-			accountHelper = new AccountHelper(this);
-		}
-		
-		return accountHelper;
-	}
-	
-	public MailHelper getMailHelper() {
-		if (mailHelper == null) {
-			mailHelper = new MailHelper(this);
-		}
-		
-		return mailHelper;
-	}
-	
-	public JamesHelper getJamesHelper() {
-		if (jamesHelper == null) {
-			jamesHelper = new JamesHelper(this);
-		}
-		return jamesHelper;
 	}
 	
 }

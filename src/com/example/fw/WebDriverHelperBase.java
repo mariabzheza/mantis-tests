@@ -1,13 +1,10 @@
 package com.example.fw;
 
-import java.util.List;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -71,22 +68,6 @@ public abstract class WebDriverHelperBase extends HelperBase {
 		if (text != null) {
 			new Select(driver.findElement(locator)).selectByVisibleText(text);
 		}
-	}
-	
-	protected WebElement findElement(By linkText) {
-		return driver.findElement(linkText);
-	}
-	
-	protected List<WebElement> findElements(By linkText) {
-		return driver.findElements(linkText);
-	}
-	
-	protected void openUrl(String string) {
-		driver.get(manager.getProperty("baseUrl") + string);
-	}
-	
-	protected void openAbsoluteUrl(String string) {
-		driver.get(string);
 	}
 
 }
