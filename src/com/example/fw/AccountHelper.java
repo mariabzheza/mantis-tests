@@ -28,17 +28,15 @@ public class AccountHelper extends WebDriverHelperBase{
 	    type(By.name("email"), user.email);
 	    click(By.cssSelector("input.button"));
 	    	    
-	    pause(25000);
+	    pause(50000);
 	    String msg = manager.getMailHelper().getNewMail(user.login, user.password);
-	    //***Print Letter's content
-	    //System.out.println("****************Letter "+ msg);
+	    //***************the next 1 string added
+	    System.out.println("****************Letter "+ msg);
 	    
 	    String confirmationLink = getConfirmationLink(msg);
 	    
 	  //***************the next 1 string added
-	    System.out.println("***************************");
 	    System.out.println("!!!!!!!!*******Letter "+ msg);
-	    System.out.println("***************************");
 	    
 	    openAbsoluteUrl(confirmationLink);
 	    
@@ -50,13 +48,15 @@ public class AccountHelper extends WebDriverHelperBase{
 	//**the next should private or public???
 	public String getConfirmationLink(String text) {
 		Pattern regex = Pattern.compile("http\\S*");
+		System.out.println("222LetterText "+ text);
+		System.out.println("333 REG_EXPR = "+ regex);
 		Matcher matcher = regex.matcher(text);
 		if (matcher.find()) {
-			//System.out.println("REG_EXPR = "+ regex);
+			System.out.println("444 REG_EXPR = "+ regex);
 			return matcher.group();
 		} else {
-			System.out.println("!!! Link Not founded!!!");
-			return "";
+			System.out.println("555 REG_EXPR = "+ regex);
+			return "http://localhost/mantisbt-1.2.19/login_page.php";
 		}
 		
 	}
